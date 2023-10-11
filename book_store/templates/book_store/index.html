@@ -1,0 +1,25 @@
+{% extends './layouts/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="cardsContainer">
+
+    {% for book in books %}
+        <div class="card cardContainer m-2" style="width: 300px; height: 500px;">
+            <img class="card-img-top p-2" style="height: 20rem;" src={% static 'book/images/' %}{{book.image}} alt="book image">
+            <div class="card-body">
+                <h5 class="card-title">{{book.name}}</h5>
+                <p class="card-text">{{book.description}}</p>
+                <div class="d-flex flex-row justify-content-center">
+                    <a href="{% url 'book_store.details' book.id %}" class="btn btn-primary px-3 m-2 bg-success text-light">Show</a>
+                    <a href="{% url 'book_store.delete' book.id %}" class="btn btn-primary px-3 m-2 bg-danger text-light">delete</a>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
