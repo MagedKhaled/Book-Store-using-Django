@@ -1,0 +1,35 @@
+{% extends 'book_store/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="m-5 p-5">
+
+
+        <div class="d-flex justify-content-around " >
+
+            <div style="border: 1px solid black; padding: 30px;" class="d-flex flex-column align-items-center">
+            <h1 class="Categories m-5">User {{user.username}} details:</h1>
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+            <h3>{{user.email}}</h3>
+
+            <a href="{% url 'update_account' user.id %}">Update Account</a>
+
+            </div>
+            <div style="border: 1px solid black; padding: 30px;" class="d-flex flex-column align-items-center">
+
+            <h1 class="Categories m-5">Your Books:</h1>
+
+
+                
+                <div class="p-5 d-flex flex-column">
+                    {% for book in books %}
+                    <a class="px-2 py-1 bg-success rounded-5 m-3 text-center text-light text-decoration-none" href="{% url 'book_store.details' book.id %}">{{book.name}}</a>
+                
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    
+</div class="m-5 p-5">
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'book_store/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin: 100px;">
+    <h1> You Logged out </h1>
+    <a href="/book_store/" class="btn btn-primary">Back to Home</a>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    <a href="{% url 'register' %}" class="btn btn-primary">SignUp</a>
+</div>
+
+
+
+
+
+{% endblock %}

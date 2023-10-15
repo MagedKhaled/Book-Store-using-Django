@@ -23,19 +23,17 @@ html{
 
 .cardsContainer{
     height: 100%;
-    margin: 100px 70px;  
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
+    margin: 100px 0px;  
+    
 
 
 
 }
 
-.cardContainer{
+/* .cardContainer{
     text-align: start;
 
-}
+} */
 
 .cardContainer p{
     height: 40px;

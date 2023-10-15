@@ -1,0 +1,49 @@
+html{
+    height: 100%;
+}
+.headerNav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.headerNav a{
+    text-decoration: none;
+    padding: 3px 10px;
+    margin: 0px 20px;
+    font-size: 20px;
+
+
+}
+
+.footerNav{
+    height: 50px;
+}
+
+.cardsContainer{
+    height: 100%;
+    margin: 100px 0px;  
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+
+
+
+}
+
+.cardContainer{
+    text-align: start;
+
+}
+
+.cardContainer p{
+    height: 40px;
+    overflow: hidden;  
+
+}
+
+.welcomeElement{
+    padding: 100px;
+}
+

@@ -1,0 +1,19 @@
+{% extends 'book_store/layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin: 100px;">
+    <h2>Update Account Information</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+
+
+
+
+    {% endblock %}

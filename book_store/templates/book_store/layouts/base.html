@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{% static 'book/css/details.css' %}">
 
     <script>
-        makeSearch = () =>{
+        makeSearch = () => {
             const value = document.getElementById('searchInput').value
-            window.location.href = `/book_store/${value}`            
+            window.location.href = `/book_store/search/${value}`
         }
     </script>
 
@@ -28,6 +28,20 @@
             <a class="" href="/book_store/contact-us">Contact Us</a>
             <a class="" href="/book_store/about-us">About Us</a>
         </div>
+        <div class="d-flex flex-row text-primary" style="margin-left:700px;">
+
+        {% if user.id %}
+            <a class="nav-link fw-bolder" href="{% url 'profile' %}"><span class="text-secondary fw-lighter">User:</span> {{user}}</a>
+            <label class="nav-item">
+                <a class="nav-link text-danger" href="{% url 'logout' %}"> logout </a>
+            </label>
+        {% else %}
+        <a class="nav-link" href="{% url 'login' %}"> Login </a>
+        <a class="nav-link" href="{% url 'register' %}"> SignUp </a>
+        {% endif %}
+    </div>
+
+
 
         <form class="form-inline d-flex flex-row me-3">
             <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

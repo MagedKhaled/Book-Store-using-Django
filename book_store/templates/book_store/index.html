@@ -4,22 +4,57 @@
 
 
 {% block content %}
-    <div class="cardsContainer">
+<div class="ps-4 pt-5 mt-5">
 
-    {% for book in books %}
-        <div class="card cardContainer m-2" style="width: 300px; height: 500px;">
-            <img class="card-img-top p-2" style="height: 20rem;" src={% static 'book/images/' %}{{book.image}} alt="book image">
-            <div class="card-body">
-                <h5 class="card-title">{{book.name}}</h5>
-                <p class="card-text">{{book.description}}</p>
+    <a href="{% url 'book_store.add' %}"><button class="btn btn-primary px-3 py-1">Add Product</button></a>
+
+    <div class="cardsContainer row">
+
+
+        {% for book in books %}
+        <div class="card cardContainer m-2 position-relative col-2" style="width: 350px; ">
+
+            <img class="m-4" style="height: 25rem;" src={{book.get_image_url}} alt="book image" />
+
+            <div style="height: 2rem;">
+                {% if book.category != None %}
+                <a class="px-2 py-1 bg-secondary rounded-5 w-25 m-3 text-center text-light text-decoration-none"
+                    href="{% url 'category.details' book.category %}">{{book.category}}</a>
+
+                {% if book.owner == user %}
+                <a href="{% url 'book_store.delete' book.id %}" class="position-absolute end-0 top-0 m-2 text-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <path
+                            d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+                    </svg>
+                </a>
+
+                {% endif %}
+
+                {% endif %}
+            </div>
+            <div class="card-body ">
+                <div style="height: 5rem;">
+                    <h5 class="card-title fw-bolder">{{book.name}}</h5>
+                    <p class="card-text text-secondary overflow-hidden" style="height: 3rem;">{{book.description}}</p>
+                </div>
                 <div class="d-flex flex-row justify-content-center">
-                    <a href="{% url 'book_store.details' book.id %}" class="btn btn-primary px-3 m-2 bg-success text-light">Show</a>
-                    <a href="{% url 'book_store.delete' book.id %}" class="btn btn-primary px-3 m-2 bg-danger text-light">delete</a>
+                    <a href="{% url 'book_store.details' book.id %}"
+                        class="btn btn-primary px-3 m-2 bg-success text-light" style="width: 100px; height:fit-content;">Show</a>
+
+
+                    {% if book.owner == user %}
+                    <a href="{% url 'book_store.edit' book.id %}"
+                        class="btn btn-primary px-3 m-2 bg-primary text-light" style="width: 100px; height:fit-content;">edit</a>
+                    {% endif %}
+
                 </div>
 
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+
+    </div>
 
 </div>
 {% endblock %}

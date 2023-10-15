@@ -1,0 +1,44 @@
+{% extends './layouts/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="cardsContainer d-flex justify-content-center">
+    <div class="card cardContainer" style="width: 18rem;">
+        {% if book.inStock > 0 %}
+        <span class="bg-success text-light p-1 position-absolute top-0 rounded-2 m-1">inStock</span>
+        {% else %}
+        <span class="bg-danger text-light p-1 position-absolute top-0 rounded-2 m-1">outStock</span>
+
+        {% endif %}
+        <img class="card-img-top" src={{book.get_image_url}} alt="Card image cap" width="200px" height="300px">
+        {% if book.category != None %}
+        <a class="px-2 py-1 bg-success rounded-5 w-25 m-3 text-center text-light text-decoration-none"
+            href="{% url 'category.details' book.category %}">{{book.category}}</a>
+        {% endif %}
+        <div class="card-body " style="height: 7rem;">
+            <div class="d-flex flex-row justify-content-between">
+                <h5 class="card-title fw-bold">{{book.name}}</h5>
+                <h5 class="card-title text-success">{{book.price}}$</h5>
+
+            </div>
+
+            <p class="card-text text-secondary" style="height: 3rem;">{{book.description}}</p>
+
+        </div>
+        <div class="m-2 p-2 bg-secondary-subtle">
+            <h5 class="text-danger">Are you sure to delete {{book.name}} ?</h5>
+            <div class="d-flex flex-row justify-content-center">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger m-1" style="width: 100px;">Yes</button>
+                </form>
+                <button href="/book_store/" class="btn btn-success m-1"  style="width: 100px;">No</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

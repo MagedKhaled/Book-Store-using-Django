@@ -12,18 +12,31 @@
         <span class="bg-danger text-light p-1 position-absolute top-0 rounded-2 m-1">outStock</span>
 
         {% endif %}
-        <img class="card-img-top" src={% static 'book/images/' %}{{book.image}} alt="Card image cap" width="200px" height="300px">
+        <img class="card-img-top" src={{book.get_image_url}} alt="Card image cap" width="200px" height="300px">
+        {% if book.category != None %}
+            <a class="px-2 py-1 bg-success rounded-5 w-25 m-3 text-center text-light text-decoration-none" href="{% url 'category.details' book.category %}">{{book.category}}</a>
+        {% endif %}
+
+        
         <div class="card-body">
             <div class="d-flex flex-row justify-content-between">
                 <h5 class="card-title fw-bold">{{book.name}}</h5>
                 <h5 class="card-title text-success">{{book.price}}$</h5>
 
             </div>
+            <p>Owner: {{ book.owner.username }}</p>
+
 
             <p class="card-text text-secondary">{{book.description}}</p>
-            <div class="justify-content-center">
-                <a href="/book_store/" class="btn btn-primary">Back to Home</a>
-                <a href="/book_store/" class="btn btn-danger">Delete</a>
+            <div class="d-flex justify-content-center align-content-center">
+                <a href="/book_store/" class="btn btn-primary m-2" style="width: 100px; height:fit-content;">Home</a>
+
+                {% if book.owner == user %}
+
+                <a href="{% url 'book_store.delete' book.id %}"
+                        class="btn btn-primary bg-danger text-light m-2" style="width: 100px; height:fit-content;">delete</a>
+
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,0 +1,34 @@
+{% extends './layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="m-5 p-5">
+
+
+        <div class="d-flex justify-content-around">
+
+            <div style="border: 1px solid black; padding: 30px;" class="d-flex flex-column align-items-center">
+            <h1 class="Categories m-5">Category {{category.name}} details:</h1>
+
+                <img src="{{category.get_image_url}}" width="300" height="500" alt="">
+                <h1>{{category.name}}</h1>
+                <h4>{{category.description}}</h4>
+            </div>
+            <div style="border: 1px solid black; padding: 30px;" class="d-flex flex-column align-items-center">
+
+            <h1 class="Categories m-5">Books in the same category:</h1>
+
+
+                
+                <div class="p-5 m-5">
+                    {% for book in books %}
+                    <a class="px-2 py-1 bg-success rounded-5 m-3 text-center text-light text-decoration-none" href="{% url 'book_store.details' book.id %}">{{book.name}}</a>
+                
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    
+</div class="m-5 p-5">
+{% endblock %}
